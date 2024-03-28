@@ -1,0 +1,76 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+
+<section>
+  <div>
+    <div class="section-change-heading">
+      <h1>SAVED ADDRESSES</h1>
+    </div>
+  </div>
+</section>
+<!-- addresses -->
+<section class="commonall">
+  <div>
+    <div id="address-container">
+      <div class="form-container">
+        <form method="POST" class="address-form">
+          {% csrf_token %}
+          <div class="address-heading">
+            <h2>Add Address</h2>
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Address"
+              required=""
+              name="address"
+              class="add-address"
+            />
+          </div>
+          <div>
+            <button type="submit" name="submit" value="submit" class="form-btn">
+              SAVE ADDRESS
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="address-grid">
+        {% for a in address %}
+        <div class="address-main-container">
+          <h2>Address {{forloop.counter}}</h2>
+          <p>{{a.address}}</p>
+          {% if a.status %}
+          <p
+            class="default-address check{{a.id}} check"
+            data-address-id="{{a.id}}"
+          >
+            Default address ✔
+          </p>
+          <button
+            style="display: none"
+            class="form-btn defaultbtn button{{a.id}} action_btn"
+            data-address-id="{{a.id}}"
+          >
+            Make Default
+          </button>
+          {% else %}
+          <p
+            class="default-address check{{a.id}} check"
+            data-address-id="{{a.id}}"
+            style="display: none"
+          >
+            Default address ✔
+          </p>
+          <button
+            class="form-btn defaultbtn button{{a.id}} action_btn"
+            data-address-id="{{a.id}}"
+          >
+            Make Default
+          </button>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

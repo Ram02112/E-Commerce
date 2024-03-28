@@ -1,0 +1,49 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+
+<!--  -->
+<section class="commonall">
+  <div class="checkout-flex">
+    <div class="placeorder-final checkout-total">
+      <a href="{% url 'core:cart' %}" class="checkout-title"
+        ><span class="material-symbols-outlined"> arrow_back </span></a
+      >
+      <p>TOTAL ITEMS IN CART : {{total_cart_items}}</p>
+      <p>TOTAL PRICE : $ <b>{{cart_total_amount}}</b></p>
+      <div>{{paypal_payments_button.render}}</div>
+    </div>
+    <div>
+      <form class="shipping-form">
+        <input
+          type="text"
+          placeholder="Name"
+          value="{{request.user.username|title}}"
+          class="add-address"
+        />
+        <input
+          type="text"
+          value="{{active_address.address}}"
+          placeholder="Address"
+          class="add-address"
+        />
+      </form>
+    </div>
+  </div>
+
+  <div class="checkout-grid">
+    <table>
+      {% for prodcut_id,item in cart_data_obj.items %}
+      <tr class="checkout-products checkout-product-details">
+        <td><img src="{{ item.image }}" alt="" class="checkoutImage" /></td>
+        <td>
+          <a href="{% url 'core:cart' %}" class="checkout-title"
+            >{{item.title}}</a
+          >
+        </td>
+        <td><span class="muted">x</span> {{item.qty}}</td>
+        <td>$ {% widthratio item.price 1 item.qty %}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</section>
+{% endblock content %}

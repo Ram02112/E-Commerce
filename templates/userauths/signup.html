@@ -1,0 +1,30 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'CSS/signup.css' %}" />
+</head>
+<main class="commonall">
+  <div>
+    {% if form.errors %}
+    <div class="alert">
+      <strong>{{form.errors}}</strong>
+    </div>
+    {% endif %}
+    <form class="form" method="POST">
+      {% csrf_token %}
+      <label> {{ form.username }} </label>
+      <label> {{ form.email }} </label>
+      <label> {{ form.password1 }} </label>
+      <label> {{ form.password2 }} </label>
+      <!-- <div>
+        <input type="checkbox" id="vendor" name="user_type" value="vendor" />
+        <label for="vendor">I am Vendor</label>
+      </div> -->
+      <label> {{form.is_staff}} I am Vendor </label>
+      <button class="submit" type="submit">Submit</button>
+      <p class="signin">
+        Already have an account? <a href="{% url 'userauths:login' %}">Login</a>
+      </p>
+    </form>
+  </div>
+</main>
+{% endblock content %}

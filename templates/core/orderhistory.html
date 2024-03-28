@@ -1,0 +1,47 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+<section>
+  <div>
+    <div class="section-change-heading">
+      <h1>ORDER HISTORY</h1>
+    </div>
+  </div>
+</section>
+<section class="commonall">
+  <div>
+    <div id="orderHistoryContainer">
+      <table class="invoice-table">
+        <thead class="orderHead">
+          <th>S.no</th>
+          <th>Order</th>
+          <th>Date</th>
+          <th>Order Status</th>
+          <th>Paid Status</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+          <tr>
+            <td>{{order.id}}</td>
+            <td>INVOICE_NUMBER_{{order.id}}</td>
+            <td>{{order.order_date}}</td>
+            <td>{{order.product_status|title}}</td>
+            {% if order.paid_status == True %}
+            <td><b>✔</b></td>
+            {% else %}
+            <td><b>X</b></td>
+
+            {% endif %}
+            <td>$ {{order.price}}</td>
+            <td>
+              <a href="{% url 'core:order-details' order.id %}">View</a>
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+<section>
+  <div>
+    <div class="section-change-heading">
+      <h1>EDIT PROFILE</h1>
+    </div>
+  </div>
+</section>
+<section class="commonall">
+  <form class="useredit" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{form.full_name}} {{form.phone}} {{form.image}}
+    <a href="{% url 'core:profile-security' %}">
+      <button class="form-btn" type="submit">SAVE CHANGES</button>
+    </a>
+  </form>
+</section>
+
+{% endblock content %}

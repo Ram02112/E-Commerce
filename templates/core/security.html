@@ -1,0 +1,39 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+<section>
+  <div>
+    <div class="section-change-heading">
+      <h1>USER PROFILE</h1>
+    </div>
+  </div>
+</section>
+<!-- password, username, other details managment -->
+<section class="commonall">
+  <main>
+    <div id="securityOptionsContainer">
+      <div class="security-options">
+        {% if profile.image %}
+        <img src="{{profile.image.url}}" alt="" class="place-img" />
+        {% else %}
+        <img
+          src="{% static 'assests/empty profile.jpg' %}"
+          alt=""
+          class="place-img"
+        />
+        {% endif %}
+        <div class="UserName common">
+          <p>UserName : {{profile.full_name}}</p>
+          <p>Mobile : {{profile.phone}}</p>
+          {% if profile.verified == True %}
+          <p>Verified ✅</p>
+          {% else %}
+          <p>Unverified account</p>
+          {% endif %}
+          <a href="{% url 'core:editprofile' %}">
+            <button class="form-btn">Edit Profile</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>
+{% endblock content %}

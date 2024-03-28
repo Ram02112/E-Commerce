@@ -1,0 +1,37 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+<main>
+  <section class="commonall">
+    <div>
+      <div id="orderHistoryContainer">
+        <table class="invoice-table">
+          <thead class="orderHead">
+            <th>Order INVOICE</th>
+            <th>Images</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </thead>
+          <tbody>
+            {% for product in products %}
+            <tr>
+              <td>INVOICE_NUMBER_{{product.id}}</td>
+              <td>
+                <p>
+                  <img src="{{product.image}}" alt="" class="checkoutImage" />
+                </p>
+              </td>
+              <td>{{product.item|title}}</td>
+              <td>$ {{product.price}}</td>
+              <td>{{product.quantity}}</td>
+              <td>$ {{product.total}}</td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock content %}

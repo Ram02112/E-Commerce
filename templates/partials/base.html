@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>E-commerce</title>
+
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&family=Lobster&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&family=Inconsolata:wght@200..900&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'CSS/styles.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="main-container">
+          <div class="first-nav">
+            <div class="support-details">
+              <p>
+                <span class="material-symbols-outlined"> mail </span
+                >randomthing@ecommerce.com
+              </p>
+              <p>
+                <span class="material-symbols-outlined"> support_agent </span
+                >100293-03999
+              </p>
+            </div>
+            <div class="customer-details">
+              <p>
+                <span class="material-symbols-outlined"> person </span
+                ><a href="{% url 'userauths:account' %}" class="redirect-links"
+                  >Account</a
+                >
+              </p>
+              <p>
+                <span class="material-symbols-outlined"> history </span
+                ><a href="{% url 'core:dashboard' %}" class="redirect-links"
+                  >Order History</a
+                >
+              </p>
+              <p>
+                <span class="cart-item-count"></span>
+                <span class="material-symbols-outlined"> shopping_bag </span
+                ><a href="{% url 'core:cart' %}" class="redirect-links">Cart</a>
+              </p>
+              {% if request.user.is_authenticated %}
+              <p>
+                <a href="{% url 'userauths:sign-out' %}" class="redirect-links"
+                  ><button class="logoutBtn">
+                    <div class="logoutsign">
+                      <svg viewBox="0 0 512 512">
+                        <path
+                          d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"
+                        ></path>
+                      </svg>
+                    </div>
+
+                    <div class="logouttext">Logout</div>
+                  </button></a
+                >
+              </p>
+              {% else %}
+              <p>
+                <span class="material-symbols-outlined"> person </span
+                ><a href="{% url 'userauths:login' %}" class="redirect-links"
+                  >Login</a
+                >
+              </p>
+              {% endif %}
+            </div>
+          </div>
+          <br />
+          <hr class="first-hr" />
+          <br />
+          <div class="second-navbar">
+            <div class="website-heading">
+              <a href="{% url 'core:index' %}" class="redirect-home"
+                ><h1><span class="title-firstletter">E</span> - COMMERCE</h1></a
+              >
+            </div>
+            <form action="{% url 'core:search' %}" method="GET">
+              <div class="search-holder">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Search Products"
+                    class="product-search-bar"
+                    id="searchInput"
+                    name="q"
+                  />
+                  <ul id="suggestions"></ul>
+                  <button class="search-icon">
+                    <span class="material-symbols-outlined"> search </span>
+                  </button>
+                </div>
+                <button class="main-search-button" type="submit">
+                  Search
+                  <svg class="cartIcon" viewBox="0 0 576 512">
+                    <path
+                      d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+          <br />
+          <div class="third-navbar">
+            <div class="dropdown">
+              <button class="dropbtn">
+                Categories
+                <span class="material-symbols-outlined category-icon">
+                  category
+                </span>
+              </button>
+              <div class="dropdown-content">
+                <div>
+                  <a href="{% url 'shop:clothing' %}">Clothing</a>
+                  <a href="{% url 'shop:electronics' %}">Electronics</a>
+                  <a href="{% url 'shop:beauty' %}">Beauty</a>
+                </div>
+                <div>
+                  <a href="{% url 'shop:furniture' %}">Furniture</a>
+                  <a href="{% url 'shop:outdoor' %}">Outdoor</a>
+                  <a href="{% url 'shop:gardening' %}">Gardening</a>
+                </div>
+                <div>
+                  <a href="{% url 'shop:baby_products' %}">Baby</a>
+                  <a href="{% url 'shop:healthcare' %}">Health care</a>
+                  <a href="{% url 'shop:kitchen' %}">Kitchen</a>
+                </div>
+                <div>
+                  <a href="{% url 'shop:jewellery' %}">Jewellery</a>
+                  <a href="{% url 'shop:luxury' %}">Luxury</a>
+                  <a href="{% url 'shop:branded' %}">Branded</a>
+                </div>
+                <div>
+                  <a href="{% url 'shop:industrial' %}">Industrial</a>
+                  <a href="{% url 'shop:games' %}">Games and Apps</a>
+                  <a href="{% url 'shop:office' %}">Office</a>
+                </div>
+                <div>
+                  <a href="{% url 'shop:petcare' %}">Pet care</a>
+                  <a href="{% url 'shop:giftcards' %}">Gift cards</a>
+                  <a href="{% url 'shop:sports' %}">Sports</a>
+                </div>
+                <div>
+                  <a href="{% url 'shop:books' %}">Books</a>
+                  <a href="{% url 'shop:musical' %}">Musical Instruments</a>
+                  <a href="{% url 'shop:dvd' %}">DvDs and Mp3</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    {% if messages %} {% for message in messages %}
+    <div class="alerts">
+      <strong>{{message}}</strong>
+    </div>
+    {% endfor %} {% endif %} {% block content %} {% endblock content %}
+    <footer>
+      <div class="section-change-heading footer">
+        <h1>FOOTER</h1>
+      </div>
+    </footer>
+
+    <script src="{% static 'JAVASCRIPT/script.js' %}"></script>
+    <script src="{% static 'JAVASCRIPT/cart.js' %}"></script>
+
+    <script>
+      setTimeout(function () {
+        var messages = document.querySelectorAll(".alerts");
+        messages.forEach(function (message) {
+          message.remove();
+        });
+      }, 3000);
+    </script>
+  </body>
+</html>

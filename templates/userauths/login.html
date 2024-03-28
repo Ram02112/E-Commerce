@@ -1,0 +1,53 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'CSS/login.css' %}" />
+</head>
+<section class="commonall">
+  <main>
+    <div>
+      <div class="login-container">
+        <form
+          class="login-form"
+          method="POST"
+          action="{% url 'userauths:login' %}"
+        >
+          {% csrf_token %}
+          <p class="heading">Login</p>
+          <p class="paragraph">Login to your account</p>
+          <div class="input-group">
+            <input
+              required=""
+              placeholder="Username"
+              id="username"
+              name="username"
+              type="text"
+            />
+          </div>
+          <div class="input-group">
+            <input
+              required=""
+              placeholder="Password"
+              name="password"
+              id="password"
+              name="password"
+              type="password"
+            />
+          </div>
+          <button type="submit" class="login-button">Login</button>
+          <div class="bottom-text">
+            <p>
+              Don't have an account?
+              <a href="{% url 'userauths:sign-up' %}">Sign Up</a>
+            </p>
+            <p>
+              For merchant login click
+              <a href="merchantlogin.html">here</a>.
+            </p>
+            <p><a href="#">Forgot password?</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</section>
+{% endblock content %}

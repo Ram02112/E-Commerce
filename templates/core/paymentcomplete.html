@@ -1,0 +1,46 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+<!--  -->
+<section class="commonall">
+  <div id="invoice-actual">
+    <table class="invoice-table">
+      <thead class="table-head">
+        <th>Title</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+      </thead>
+      <tbody class="table-body">
+        {% for prodcut_id,item in cart_data_obj.items %}
+        <tr>
+          <td>{{item.title}}</td>
+          <td>$ {{item.price}}</td>
+          <td>{{item.qty}}</td>
+          <td>$ {% widthratio item.price 1 item.qty %}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="3">TOTAL</td>
+          <td>$ {{cart_total_amount}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="invoice-title">
+    <p>
+      Hey! {{request.user|title}}, Thanks for shopping with us here is your
+      payment invoice.
+    </p>
+    <button class="confirmOrder" id="download-invoice">GET INVOICE</button>
+  </div>
+</section>
+<script src="{% static 'JAVASCRIPT/html2pdf.js' %}"></script>
+
+<script>
+  document.getElementById("download-invoice").addEventListener("click", () => {
+    var invoice = document.getElementById("invoice-actual");
+    setTimeout(() => {
+      html2pdf().from(invoice).save();
+    }, 100);
+  });
+</script>
+{% endblock content %}

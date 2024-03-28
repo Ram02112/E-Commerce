@@ -1,0 +1,20 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+
+<!--  -->
+<section class="commonall">
+  <div>
+    <img
+      src="{% static 'assests/failedcross.jpg' %}"
+      alt=""
+      class="failedCross"
+    />
+    <h1 class="payment-status">PAYMENT FAILED</h1>
+    <div class="go-back">
+      <p>Try again later</p>
+      <a href="{% url 'core:cart' %}"
+        ><button class="backToCartBtn">BACK TO CART</button></a
+      >
+    </div>
+  </div>
+</section>
+{% endblock content %}

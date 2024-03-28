@@ -1,0 +1,13 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+<section>
+  <div class="section-change-heading">
+    <h1>YOUR CART</h1>
+  </div>
+</section>
+<section class="commonall">
+  <div class="emptyCartCard">
+    <img src="{% static 'assests/emptyCart.jpg' %}" alt="" class="emptyCart" />
+    <p>UH-OH!! CART IS EMPTY</p>
+  </div>
+</section>
+{% endblock content %}

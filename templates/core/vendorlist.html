@@ -1,0 +1,27 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+<section class="commonall">
+  <div class="vendor-display">
+    {% for v in vendor %}
+    <div class="vendor-card">
+      <a href="{% url 'core:vendor-details' v.vendor_id %}">
+        <img src="{{v.image.url}}" alt="" class="vendor-image" />
+      </a>
+      <p>{{v.title}}</p>
+      <br />
+      <div class="vendor-details">
+        <p>Has {{v.products.count}} listings</p>
+        <p>Member Since {{v.date|date:"Y"}}</p>
+        <br />
+        <p>Contact :- {{v.contact}}</p>
+        <br />
+        <p>
+          Address :- <br />
+          {{v.address}}
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock content %}

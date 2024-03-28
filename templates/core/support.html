@@ -1,0 +1,59 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+
+<section>
+  <div>
+    <div class="section-change-heading">
+      <h1>CONTACT SUPPORT</h1>
+    </div>
+  </div>
+</section>
+<section class="commonall">
+  <div>
+    <div id="support-container">
+      <h4 id="message-response"></h4>
+      <form method="POST" id="contact-form-ajax">
+        {% csrf_token %}
+        <div class="support-form">
+          <input
+            type="text"
+            placeholder="Name"
+            class="support-form-input"
+            name="name"
+            id="name"
+          />
+          <input
+            type="text"
+            placeholder="Email"
+            class="support-form-input"
+            name="email"
+            id="email"
+          />
+          <input
+            type="text"
+            placeholder="Phone Number"
+            class="support-form-input"
+            name="phone"
+            id="phone"
+          />
+          <input
+            type="text"
+            placeholder="Subject"
+            class="support-form-input"
+            name="subject"
+            id="subject"
+          />
+          <textarea
+            name="Message"
+            cols="30"
+            rows="10"
+            placeholder="Message"
+            class="support-textarea"
+            id="message"
+          ></textarea>
+        </div>
+        <button type="submit" class="form-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

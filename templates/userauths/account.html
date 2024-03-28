@@ -1,0 +1,46 @@
+{% extends 'partials/base.html' %} {% load static %} {% block content %}
+
+<section class="commonall">
+  <div>
+    <div class="section-change-heading">
+      <h1>Your Account Details</h1>
+    </div>
+    <div class="account-options-box">
+      <div class="account-options">
+        <a href="{% url 'core:profile-security' %}">
+          <div class="a-flex">
+            <span class="material-symbols-outlined icon two"> lock </span>
+            <div>
+              <p>Profile</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="account-options">
+        <a href="{% url 'core:address' %}">
+          <div class="a-flex">
+            <span class="material-symbols-outlined icon two"> home </span>
+            <div>
+              <p>Addresses</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="account-options">
+        <a href="{% url 'core:support' %}">
+          <div class="a-flex">
+            <span class="material-symbols-outlined icon one">
+              support_agent
+            </span>
+            <div>
+              <p>Support</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
